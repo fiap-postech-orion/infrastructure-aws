@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "techchallenge-terraform"
-    key    = "estado/terraform.tfstate"
+    bucket = "orion-techchallenge"
+    key    = "terraform.tfstate"
     region = "us-east-1"
   }
 }
