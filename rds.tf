@@ -49,5 +49,6 @@ resource "aws_db_instance" "default" {
 
   tags = {
     Name = "MeuRDSPostgres"
+    Team = "orion"
   }
 }
