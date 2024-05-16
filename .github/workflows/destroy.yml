@@ -1,21 +1,17 @@
-name: 'Terraform'
+name: 'Terraform Destroy'
 
 on:
-  pull_request:
-    branches: ["master"]
-    types: [closed]
   workflow_dispatch:
     inputs:
       destroy:
         description: 'Destroy infrastructure'
-        required: false
+        required: true
         default: 'false'
 
 jobs:
-  terraform:
+  destroy:
     runs-on: ubuntu-latest
-    environment: production
-
+    if: github.event.inputs.destroy == 'true'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -33,14 +29,5 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Format
-        run: terraform fmt -check
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
