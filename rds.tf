@@ -25,12 +25,23 @@ resource "aws_security_group" "rds_sg" {
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name        = "meu-rds-subnet-group"
   description = "Meu grupo de subnets do RDS"
-  subnet_ids  = module.vpc.public_subnets
+  subnet_ids  = module.vpc.private_subnets
 
   tags = {
     Name = "meu-rds-subnet-group"
   }
 }
+
+resource "aws_db_subnet_group" "rds_public_subnet_group" {
+  name        = "meu-rds-public-subnet-group"
+  description = "Meu grupo de subnets do RDS publicas"
+  subnet_ids  = module.vpc.public_subnets
+
+  tags = {
+    Name = "meu-rds-public-subnet-group"
+  }
+}
+
 
 resource "aws_db_instance" "default" {
   allocated_storage = 10
@@ -44,7 +55,7 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot = true
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
+  db_subnet_group_name   = aws_db_subnet_group.rds_public_subnet_group.name
   publicly_accessible    = true
 
   tags = {
