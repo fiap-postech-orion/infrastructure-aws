@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 /.idea/workspace.xml
+/.terraform/
 .idea/
 # Editor-based HTTP Client requests
 /httpRequests/
