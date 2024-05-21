@@ -3,6 +3,7 @@ resource "aws_docdb_cluster" "mongo_cluster" {
   engine             = "docdb"
   master_username    = "foo"
   master_password    = "mustbeeightchars"
+  db_subnet_group_name = aws_db_subnet_group.rds_public_subnet_group.name
 }
 
 resource "aws_docdb_cluster_instance" "mongo_instance" {
