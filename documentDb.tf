@@ -1,11 +1,8 @@
 resource "aws_docdb_cluster" "mongo_cluster" {
-  cluster_identifier  = "my-docdb-cluster"
-  master_username     = "orion-user"
-  master_password     = "orion-password"
-  skip_final_snapshot = true
-
-  db_subnet_group_name = aws_db_subnet_group.rds_public_subnet_group.name
-  depends_on           = [aws_db_subnet_group.rds_public_subnet_group]
+  cluster_identifier      = "my-docdb-cluster"
+  engine                  = "docdb"
+  master_username         = "foo"
+  master_password         = "mustbeeightchars"
 }
 
 resource "aws_docdb_cluster_instance" "mongo_instance" {
