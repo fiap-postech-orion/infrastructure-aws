@@ -60,7 +60,7 @@ resource "aws_docdb_cluster" "mongo_cluster" {
   master_password        = "mustbeeightchars"
   db_subnet_group_name   = aws_db_subnet_group.docdb_subnet_group.name
   vpc_security_group_ids = [aws_security_group.docdb_sg.id]
-  skip_final_snapshot    = true
+  skip_final_snapshot    = false
 }
 
 resource "aws_docdb_cluster_instance" "mongo_instance" {
