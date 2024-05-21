@@ -1,8 +1,8 @@
 resource "aws_docdb_cluster" "mongo_cluster" {
-  cluster_identifier      = "my-docdb-cluster"
-  engine                  = "docdb"
-  master_username         = "foo"
-  master_password         = "mustbeeightchars"
+  cluster_identifier = "my-docdb-cluster"
+  engine             = "docdb"
+  master_username    = "foo"
+  master_password    = "mustbeeightchars"
 }
 
 resource "aws_docdb_cluster_instance" "mongo_instance" {
